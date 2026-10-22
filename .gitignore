@@ -1,0 +1,11 @@
+*.iml
+.gradle/
+.idea/
+.kotlin/
+build/
+captures/
+# Berisi lokasi SDK dan (nanti) API key Gemini. Jangan pernah dibagikan.
+local.properties
+# Kunci tanda tangan APK dan APK hasil build rilis. Jangan ikut dibagikan bersama kode.
+kunci/
+rilis/

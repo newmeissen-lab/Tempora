@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dua batang dari mockup (putih dan kuning). Kanvas ikon adaptif 108dp, gambar di tengah supaya tidak terpotong. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#F4ECF8"
+        android:pathData="M41.5,34 H46.5 A4.5,4.5 0 0 1 51,38.5 V69.5 A4.5,4.5 0 0 1 46.5,74 H41.5 A4.5,4.5 0 0 1 37,69.5 V38.5 A4.5,4.5 0 0 1 41.5,34 Z" />
+    <path
+        android:fillColor="#FFDD4A"
+        android:pathData="M61.5,34 H66.5 A4.5,4.5 0 0 1 71,38.5 V69.5 A4.5,4.5 0 0 1 66.5,74 H61.5 A4.5,4.5 0 0 1 57,69.5 V38.5 A4.5,4.5 0 0 1 61.5,34 Z" />
+</vector>

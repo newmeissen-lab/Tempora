@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Hanya warna yang dibutuhkan sebelum Compose menyala. Warna lain ada di ui/theme/Color.kt. -->
+    <color name="latar">#110010</color>
+    <!-- Sama dengan latar aplikasi, supaya animasi saat ikon diketuk tidak berkilat ungu terang. -->
+    <color name="ikon_latar">#110010</color>
+</resources>

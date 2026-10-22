@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Izin membaca lama pemakaian aplikasi. Pengguna mengaktifkannya sendiri di
+         Pengaturan > Akses penggunaan; baris ini membuat Tempora muncul di daftar itu. -->
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+
+    <!-- Izin memakai internet, untuk mengirim PDF materi ke Gemini dan menerima soalnya. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Izin menampilkan layar kuis di atas aplikasi lain. Pengguna mengaktifkannya sendiri di
+         Pengaturan > Tampil di atas aplikasi lain; baris ini membuat Tempora muncul di daftar itu. -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <!-- Izin untuk layanan pemantau yang tetap berjalan saat Tempora ditutup.
+         SPECIAL_USE adalah jenis layanan untuk keperluan yang tidak ada di daftar jenis Android. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <!-- Android 13 ke atas: notifikasi baru muncul setelah pengguna mengizinkan lewat dialog. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Supaya Tempora diberi tahu saat HP selesai dinyalakan. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Sejak Android 11, aplikasi lain tidak terlihat kecuali jenisnya disebut di sini.
+         LAUNCHER = semua aplikasi yang punya ikon, HOME = layar utama HP. -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.HOME" />
+        </intent>
+    </queries>
+
+    <application
+        android:name=".TemporaApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Tempora">
+
+        <!-- exported="true" dan intent-filter LAUNCHER membuat ikon Tempora muncul di daftar aplikasi HP.
+             adjustResize membuat isi layar menyesuaikan saat keyboard muncul.
+             singleTop: kalau notifikasi diketuk saat Tempora sudah terbuka, layar yang ada dipakai
+             lagi (lewat onNewIntent), tidak dibuat layar kedua. -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Layanan pemantau pemakaian. exported="false" = hanya Tempora yang boleh menjalankannya. -->
+        <service
+            android:name=".pemantau.LayananPemantau"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Memantau lama pemakaian aplikasi yang dibatasi pengguna" />
+        </service>
+
+        <!-- Menghidupkan lagi layanan pemantau setelah HP dinyalakan ulang. -->
+        <receiver
+            android:name=".pemantau.PenerimaNyala"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

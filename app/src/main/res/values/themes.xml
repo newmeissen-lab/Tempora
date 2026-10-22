@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tema jendela sebelum Compose menggambar. Latar gelap mencegah kilatan putih saat aplikasi dibuka. -->
+    <style name="Theme.Tempora" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/latar</item>
+    </style>
+</resources>

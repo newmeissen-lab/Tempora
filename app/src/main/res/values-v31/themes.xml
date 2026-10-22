@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Android 12 ke atas punya layar pembuka bawaan sistem. Di sini warnanya dipaksa sama
+         dengan latar Tempora, sebelum layar memuat buatan kita tampil. -->
+    <style name="Theme.Tempora" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/latar</item>
+        <item name="android:windowSplashScreenBackground">@color/latar</item>
+    </style>
+</resources>

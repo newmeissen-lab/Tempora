@@ -1,0 +1,49 @@
+# Daftar versi semua plugin dan pustaka. Kalau perlu ganti versi, cukup ubah di sini.
+[versions]
+agp = "9.0.1"
+# Harus sama dengan versi Kotlin yang dibawa AGP 9.0.1.
+kotlin = "2.2.10"
+# AGP 9 butuh KSP 2.3.6 ke atas. Sejak 2.3.0 versi KSP tidak lagi mengikuti versi Kotlin.
+ksp = "2.3.6"
+activityCompose = "1.11.0"
+composeBom = "2025.12.00"
+navigationCompose = "2.9.5"
+lifecycle = "2.9.4"
+coroutines = "1.10.2"
+room = "2.7.2"
+datastore = "1.1.7"
+# Ktor 3.3.x dan serialization 1.9.0 adalah versi yang cocok dengan Kotlin 2.2.
+# Versi yang lebih baru dibuat untuk Kotlin yang lebih baru daripada bawaan AGP 9.0.1.
+ktor = "3.3.3"
+serialization = "1.9.0"
+work = "2.11.2"
+
+[libraries]
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+# BOM menentukan versi semua pustaka Compose sekaligus, jadi ui dan material3 tidak perlu ditulis versinya.
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+# ViewModel dan StateFlow untuk Compose.
+androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+# Room = database lokal. room-compiler membuat kode database saat build (lewat KSP).
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+# DataStore = penyimpanan pengaturan kecil.
+androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
+# Ktor Client = pengirim permintaan internet ke Gemini. "android" adalah mesin jaringannya,
+# memakai sambungan bawaan Android sehingga tidak butuh pustaka jaringan lain.
+ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+ktor-client-android = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
+# WorkManager = penjadwal pekerjaan berkala di latar belakang, dipakai untuk notifikasi pengingat.
+androidx-work-runtime = { group = "androidx.work", name = "work-runtime", version.ref = "work" }
+# Membaca dan menulis JSON (format balasan Gemini).
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
